@@ -10,8 +10,7 @@
     "qs": {
       "q": "{{parameters.q}}",
       "count": "{{parameters.count}}",
-      "country": "{{parameters.country}}",
-      "lang": "{{parameters.lang}}"
+      "country": "{{parameters.country}}"
     },
     "response": { "output": "{{body.data}}" }
   },
@@ -19,8 +18,7 @@
     { "name": "q", "type": "text", "label": "Query", "required": true },
     { "name": "engine", "type": "select", "label": "Engine", "default": "google", "options": [ { "label": "Google", "value": "google" }, { "label": "Bing", "value": "bing" } ] },
     { "name": "count", "type": "number", "label": "Max suggestions" },
-    { "name": "country", "type": "text", "label": "Country", "default": "us" },
-    { "name": "lang", "type": "text", "label": "Language", "default": "en" }
+    { "name": "country", "type": "text", "label": "Country", "default": "us" }
   ],
   "interface": [],
   "samples": { "query": "coffee", "suggestions": [ { "position": 1, "query": "coffee near me" } ] }

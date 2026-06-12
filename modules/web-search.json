@@ -39,7 +39,7 @@
       "default": "bing"
     },
     { "name": "country", "type": "text", "label": "Country", "default": "us", "help": "Two-letter country code, e.g. us, gb, de." },
-    { "name": "language", "type": "text", "label": "Language", "default": "en" },
+    { "name": "language", "type": "text", "label": "Language", "default": "en-us", "help": "ll-cc format (e.g. en-us, en-gb, de-de); Bing/Brave reject bare codes like 'en'." },
     { "name": "limit", "type": "number", "label": "Number of results", "default": 10, "help": "Bing supports up to 50." },
     { "name": "page", "type": "number", "label": "Page", "default": 1 }
   ],
