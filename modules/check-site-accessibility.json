@@ -1,0 +1,22 @@
+{
+  "name": "checkSiteAccessibility",
+  "label": "Check Site Accessibility",
+  "description": "Check whether a public web page is reachable and what bot-protection signals it presents. For authorized public-data work only.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "/diagnostics/antibot-check",
+    "method": "POST",
+    "body": {
+      "url": "{{parameters.url}}",
+      "fast": "{{parameters.fast}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "url", "type": "url", "label": "Website URL", "required": true },
+    { "name": "fast", "type": "boolean", "label": "Fast check", "default": true }
+  ],
+  "interface": [],
+  "samples": { "url": "https://example.com", "reachable": true, "protection": "none", "status_code": 200 }
+}

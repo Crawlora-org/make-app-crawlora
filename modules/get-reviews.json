@@ -1,0 +1,25 @@
+{
+  "name": "getReviews",
+  "label": "Get Reviews",
+  "description": "Get public reviews for a business, app, or listing by its identifier from a chosen source.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"appstore\"; \"/appstore/reviews\"; \"googleplay\"; \"/googleplay/reviews\"; \"producthunt\"; \"/producthunt/product/\" + parameters.identifier + \"/reviews\"; \"airbnb\"; \"/airbnb/room/\" + parameters.identifier + \"/reviews\"; \"/trustpilot/business/\" + parameters.identifier + \"/reviews\")}}",
+    "method": "GET",
+    "qs": {
+      "app_id": "{{parameters.identifier}}",
+      "country": "{{parameters.country}}",
+      "page": "{{parameters.page}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "source", "type": "select", "label": "Source", "required": true, "default": "trustpilot", "options": [ { "label": "Trustpilot", "value": "trustpilot" }, { "label": "App Store", "value": "appstore" }, { "label": "Google Play", "value": "googleplay" }, { "label": "Product Hunt", "value": "producthunt" }, { "label": "Airbnb", "value": "airbnb" } ] },
+    { "name": "identifier", "type": "text", "label": "Identifier", "required": true, "help": "Trustpilot: business domain/slug · App Store: numeric app ID · Google Play: package name · Product Hunt: product ID · Airbnb: room ID." },
+    { "name": "country", "type": "text", "label": "Country" },
+    { "name": "page", "type": "number", "label": "Page", "default": 1 }
+  ],
+  "interface": [],
+  "samples": { "reviews": [ { "author": "Jane D.", "rating": 5, "title": "Great", "text": "Loved it.", "date": "2026-05-01" } ] }
+}

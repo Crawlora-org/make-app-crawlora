@@ -11,7 +11,20 @@ builder**.
 | **Get Page Content** | action | `POST /web/scrape` |
 | **Web Search** | search | `GET /bing/search` · `GET /brave/search` (engine select) |
 | **Find Website Contacts** | action | `POST /contact` |
+| **Get Search Suggestions** | action | `GET /{google,bing}/suggest` (engine select) |
+| **Geocode an Address** | action | `GET /geocoding/search` |
+| **Reverse Geocode Coordinates** | action | `GET /geocoding/reverse` |
+| **Check Site Accessibility** | action | `POST /diagnostics/antibot-check` |
+| **Find Local Businesses** | action | live map search or stored business dataset (source select) |
+| **Get Product Details** | action | product/app by identifier (source select) |
+| **Search a Marketplace** | action | marketplace search (source select) |
+| **Get Reviews** | action | reviews by identifier (source select) |
+| **Get Financial Quote** | action | stock/index/crypto quote (source select) |
+| **Get Social Profile** | action | profile/posts by handle (source select) |
 | **Make an API Call** | universal | call any Crawlora endpoint by path |
+
+The source-select modules branch by a dropdown value (no per-site module names); the universal module
+covers anything not listed above.
 
 Authentication is an **API-key connection** (`x-api-key` header), validated with a cheap, key-only
 call to `GET /google/suggest`. Get a key from your

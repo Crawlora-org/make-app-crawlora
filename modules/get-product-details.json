@@ -1,0 +1,23 @@
+{
+  "name": "getProductDetails",
+  "label": "Get Product Details",
+  "description": "Get normalized details for a product or app by its identifier from a chosen source.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"amazon\"; \"/amazon/product/\" + parameters.identifier; \"ebay\"; \"/ebay/item/\" + parameters.identifier; \"appstore\"; \"/appstore/app\"; \"googleplay\"; \"/googleplay/app\")}}",
+    "method": "GET",
+    "qs": {
+      "app_id": "{{parameters.identifier}}",
+      "country": "{{parameters.country}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "source", "type": "select", "label": "Source", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" }, { "label": "App Store", "value": "appstore" }, { "label": "Google Play", "value": "googleplay" } ] },
+    { "name": "identifier", "type": "text", "label": "Identifier", "required": true, "help": "Amazon: ASIN · eBay: item ID · App Store: numeric app ID · Google Play: package name." },
+    { "name": "country", "type": "text", "label": "Country" }
+  ],
+  "interface": [],
+  "samples": { "title": "Example Product", "price": 19.99, "currency": "USD", "rating": 4.5, "url": "https://example.com/p/1" }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "reverseGeocode",
+  "label": "Reverse Geocode Coordinates",
+  "description": "Convert latitude/longitude coordinates into a structured address.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "/geocoding/reverse",
+    "method": "GET",
+    "qs": {
+      "lat": "{{parameters.lat}}",
+      "lon": "{{parameters.lon}}",
+      "addressdetails": "1"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "lat", "type": "text", "label": "Latitude", "required": true },
+    { "name": "lon", "type": "text", "label": "Longitude", "required": true }
+  ],
+  "interface": [],
+  "samples": { "display_name": "Mountain View, CA, USA", "address": { "city": "Mountain View", "country": "United States" } }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "getFinancialQuote",
+  "label": "Get Financial Quote",
+  "description": "Get the latest quote for a stock, index, or cryptocurrency from a chosen source.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"google\"; \"/google/finance/quote/\" + parameters.symbol; \"coingecko\"; \"/coingecko/coin/\" + parameters.symbol; \"/yahoo-finance/ticker/\" + parameters.symbol + \"/quote\")}}",
+    "method": "GET",
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "source", "type": "select", "label": "Source", "required": true, "default": "yahoo", "options": [ { "label": "Yahoo Finance", "value": "yahoo" }, { "label": "Google Finance", "value": "google" }, { "label": "CoinGecko", "value": "coingecko" } ] },
+    { "name": "symbol", "type": "text", "label": "Symbol", "required": true, "help": "Yahoo: ticker (AAPL) · Google Finance: AAPL:NASDAQ · CoinGecko: coin ID (bitcoin)." }
+  ],
+  "interface": [],
+  "samples": { "symbol": "AAPL", "price": 212.45, "currency": "USD", "change_percent": 0.82 }
+}

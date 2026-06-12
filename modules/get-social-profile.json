@@ -1,0 +1,22 @@
+{
+  "name": "getSocialProfile",
+  "label": "Get Social Profile",
+  "description": "Get a public profile (or recent posts) by handle from a chosen social platform.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"tiktok\"; \"/tiktok/profile/\" + parameters.handle; \"instagram\"; \"/instagram/profile/\" + parameters.handle; \"reddit\"; \"/reddit/user/\" + parameters.handle + \"/posts\"; \"linkedin\"; \"/linkedin/company/\" + parameters.handle; \"/youtube/profile/\" + parameters.handle)}}",
+    "method": "GET",
+    "qs": {
+      "limit": "{{parameters.limit}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "source", "type": "select", "label": "Platform", "required": true, "default": "youtube", "options": [ { "label": "YouTube", "value": "youtube" }, { "label": "TikTok", "value": "tiktok" }, { "label": "Instagram", "value": "instagram" }, { "label": "Reddit", "value": "reddit" }, { "label": "LinkedIn", "value": "linkedin" } ] },
+    { "name": "handle", "type": "text", "label": "Handle or ID", "required": true, "help": "YouTube: channel ID/handle · TikTok: username · Instagram: username · Reddit: username (returns recent posts) · LinkedIn: company ID/slug." },
+    { "name": "limit", "type": "number", "label": "Max items", "help": "Reddit only." }
+  ],
+  "interface": [],
+  "samples": { "handle": "example", "name": "Example", "followers": 12000, "url": "https://example.com/@example" }
+}

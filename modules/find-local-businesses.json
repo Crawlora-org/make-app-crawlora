@@ -1,0 +1,31 @@
+{
+  "name": "findLocalBusinesses",
+  "label": "Find Local Businesses",
+  "description": "Find local businesses for a search query (live map search or the stored business dataset).",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"dataset\"; \"/datasets/google-map-businesses/search\"; \"/google/map/search\")}}",
+    "method": "{{switch(parameters.source; \"dataset\"; \"GET\"; \"POST\")}}",
+    "qs": {
+      "q": "{{parameters.query}}",
+      "country": "{{parameters.country}}",
+      "city": "{{parameters.city}}"
+    },
+    "body": {
+      "keyword": "{{parameters.query}}",
+      "country": "{{parameters.country}}",
+      "language": "{{parameters.language}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "query", "type": "text", "label": "Search query", "required": true },
+    { "name": "source", "type": "select", "label": "Source", "default": "live", "options": [ { "label": "Live map search", "value": "live" }, { "label": "Stored business dataset", "value": "dataset" } ] },
+    { "name": "country", "type": "text", "label": "Country", "default": "us" },
+    { "name": "language", "type": "text", "label": "Language", "default": "en" },
+    { "name": "city", "type": "text", "label": "City" }
+  ],
+  "interface": [],
+  "samples": { "results": [ { "name": "Example Coffee", "rating": 4.6, "address": "123 Main St, Austin, TX", "phone": "+1 512-555-0100" } ] }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "searchMarketplace",
+  "label": "Search a Marketplace",
+  "description": "Search a marketplace for products matching a query and return the results.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.source; \"etsy\"; \"/etsy/search\"; \"ebay\"; \"/ebay/search\"; \"/amazon/search\")}}",
+    "method": "{{switch(parameters.source; \"ebay\"; \"POST\"; \"GET\")}}",
+    "qs": {
+      "k": "{{parameters.query}}",
+      "q": "{{parameters.query}}",
+      "page": "{{parameters.page}}"
+    },
+    "body": {
+      "keyword": "{{parameters.query}}",
+      "page": "{{parameters.page}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "source", "type": "select", "label": "Marketplace", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" }, { "label": "Etsy", "value": "etsy" } ] },
+    { "name": "query", "type": "text", "label": "Search query", "required": true },
+    { "name": "page", "type": "number", "label": "Page", "default": 1 }
+  ],
+  "interface": [],
+  "samples": { "results": [ { "title": "Example Item", "price": 24.99, "url": "https://example.com/item/1" } ] }
+}

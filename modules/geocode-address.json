@@ -1,0 +1,25 @@
+{
+  "name": "geocodeAddress",
+  "label": "Geocode an Address",
+  "description": "Convert a free-form address or place name into coordinates and structured location data.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "/geocoding/search",
+    "method": "GET",
+    "qs": {
+      "q": "{{parameters.q}}",
+      "country": "{{parameters.country}}",
+      "limit": "{{parameters.limit}}",
+      "addressdetails": "1"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "q", "type": "text", "label": "Address or place", "required": true },
+    { "name": "country", "type": "text", "label": "Country code" },
+    { "name": "limit", "type": "number", "label": "Max results", "default": 5 }
+  ],
+  "interface": [],
+  "samples": { "results": [ { "lat": "37.4220", "lon": "-122.0841", "display_name": "1600 Amphitheatre Parkway, Mountain View, CA, USA" } ] }
+}

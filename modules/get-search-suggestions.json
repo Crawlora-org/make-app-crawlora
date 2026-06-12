@@ -1,0 +1,27 @@
+{
+  "name": "getSearchSuggestions",
+  "label": "Get Search Suggestions",
+  "description": "Get autocomplete query suggestions for a search term.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{switch(parameters.engine; \"bing\"; \"/bing/suggest\"; \"/google/suggest\")}}",
+    "method": "GET",
+    "qs": {
+      "q": "{{parameters.q}}",
+      "count": "{{parameters.count}}",
+      "country": "{{parameters.country}}",
+      "lang": "{{parameters.lang}}"
+    },
+    "response": { "output": "{{body.data}}" }
+  },
+  "mappableParameters": [
+    { "name": "q", "type": "text", "label": "Query", "required": true },
+    { "name": "engine", "type": "select", "label": "Engine", "default": "google", "options": [ { "label": "Google", "value": "google" }, { "label": "Bing", "value": "bing" } ] },
+    { "name": "count", "type": "number", "label": "Max suggestions" },
+    { "name": "country", "type": "text", "label": "Country", "default": "us" },
+    { "name": "lang", "type": "text", "label": "Language", "default": "en" }
+  ],
+  "interface": [],
+  "samples": { "query": "coffee", "suggestions": [ { "position": 1, "query": "coffee near me" } ] }
+}
