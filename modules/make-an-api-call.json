@@ -1,0 +1,47 @@
+{
+  "name": "makeAnApiCall",
+  "label": "Make an API Call",
+  "description": "Sends a custom API call to Crawlora. Use this to call endpoints that aren't covered by existing modules.",
+  "moduleType": "universal",
+  "connection": "crawlora",
+  "communication": {
+    "url": "{{parameters.url}}",
+    "method": "{{parameters.method}}",
+    "qs": "{{parameters.qs}}",
+    "headers": "{{parameters.headers}}",
+    "body": "{{parameters.body}}",
+    "response": {
+      "output": "{{body}}"
+    }
+  },
+  "mappableParameters": [
+    { "name": "url", "type": "text", "label": "URL", "required": true, "help": "Endpoint path after the base URL, e.g. /google/suggest or /youtube/transcript/VIDEO_ID. See https://docs.crawlora.net." },
+    {
+      "name": "method",
+      "type": "select",
+      "label": "Method",
+      "required": true,
+      "default": "GET",
+      "options": [
+        { "label": "GET", "value": "GET" },
+        { "label": "POST", "value": "POST" },
+        { "label": "PUT", "value": "PUT" },
+        { "label": "DELETE", "value": "DELETE" }
+      ]
+    },
+    {
+      "name": "qs",
+      "type": "array",
+      "label": "Query string",
+      "spec": { "type": "collection", "spec": [ { "name": "key", "type": "text" }, { "name": "value", "type": "text" } ] }
+    },
+    {
+      "name": "headers",
+      "type": "array",
+      "label": "Headers",
+      "spec": { "type": "collection", "spec": [ { "name": "key", "type": "text" }, { "name": "value", "type": "text" } ] }
+    },
+    { "name": "body", "type": "any", "label": "Body" }
+  ],
+  "interface": []
+}

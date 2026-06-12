@@ -1,0 +1,18 @@
+{
+  "url": "/google/suggest",
+  "method": "GET",
+  "qs": {
+    "q": "crawlora"
+  },
+  "headers": {
+    "x-api-key": "{{parameters.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] Invalid Crawlora API key."
+    }
+  },
+  "log": {
+    "sanitize": ["request.headers.x-api-key"]
+  }
+}

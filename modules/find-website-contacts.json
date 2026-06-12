@@ -1,0 +1,65 @@
+{
+  "name": "findWebsiteContacts",
+  "label": "Find Website Contacts",
+  "description": "Find public contact details (emails, phones, social profiles) for a website by its URL.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "/contact",
+    "method": "POST",
+    "body": {
+      "url": "{{parameters.url}}",
+      "max_pages": "{{parameters.max_pages}}",
+      "verify": "{{parameters.verify}}",
+      "independents_only": "{{parameters.independents_only}}"
+    },
+    "response": {
+      "output": "{{body.data}}"
+    }
+  },
+  "mappableParameters": [
+    { "name": "url", "type": "url", "label": "Website URL", "required": true, "help": "The website to read, e.g. https://example.com." },
+    { "name": "max_pages", "type": "number", "label": "Max pages to read", "default": 5 },
+    { "name": "verify", "type": "boolean", "label": "Verify emails", "default": true, "help": "Check whether found email addresses are deliverable." },
+    { "name": "independents_only", "type": "boolean", "label": "Independent sites only", "default": false, "help": "When true, return only the site classification (no read) for chains, social, builders, or directories — a cheap filter." }
+  ],
+  "interface": [
+    { "name": "domain", "type": "text", "label": "Domain" },
+    { "name": "domain_type", "type": "text", "label": "Domain type" },
+    { "name": "crawl_status", "type": "text", "label": "Crawl status" },
+    {
+      "name": "emails",
+      "type": "array",
+      "label": "Emails",
+      "spec": {
+        "type": "collection",
+        "spec": [
+          { "name": "address", "type": "email" },
+          { "name": "status", "type": "text" },
+          { "name": "type", "type": "text" },
+          { "name": "source_page", "type": "url" }
+        ]
+      }
+    },
+    {
+      "name": "phones",
+      "type": "array",
+      "label": "Phones",
+      "spec": { "type": "collection", "spec": [ { "name": "number", "type": "text" }, { "name": "source_page", "type": "url" } ] }
+    },
+    {
+      "name": "socials",
+      "type": "array",
+      "label": "Socials",
+      "spec": { "type": "collection", "spec": [ { "name": "network", "type": "text" }, { "name": "url", "type": "url" }, { "name": "handle", "type": "text" } ] }
+    }
+  ],
+  "samples": {
+    "domain": "example.com",
+    "domain_type": "independent",
+    "crawl_status": "ok",
+    "emails": [ { "address": "hello@example.com", "status": "verified", "type": "generic", "source_page": "https://example.com/contact" } ],
+    "phones": [ { "number": "+1 415-555-2671", "source_page": "https://example.com/contact" } ],
+    "socials": [ { "network": "linkedin", "url": "https://www.linkedin.com/company/example", "handle": "example" } ]
+  }
+}

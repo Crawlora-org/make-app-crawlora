@@ -1,0 +1,9 @@
+[
+  {
+    "name": "apiKey",
+    "type": "text",
+    "label": "API Key",
+    "required": true,
+    "help": "Find your API key at https://crawlora.net/app/api-keys. New accounts include a free monthly credit allowance, no card required."
+  }
+]

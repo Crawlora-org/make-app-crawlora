@@ -1,0 +1,89 @@
+{
+  "name": "getPageContent",
+  "label": "Get Page Content",
+  "description": "Fetch a public web page and return it as clean Markdown, HTML, links, or page metadata.",
+  "moduleType": "action",
+  "connection": "crawlora",
+  "communication": {
+    "url": "/web/scrape",
+    "method": "POST",
+    "body": {
+      "url": "{{parameters.url}}",
+      "formats": "{{parameters.formats}}",
+      "only_main_content": "{{parameters.only_main_content}}",
+      "render": "{{parameters.render}}",
+      "max_age": "{{parameters.max_age}}",
+      "wait_for": "{{parameters.wait_for}}"
+    },
+    "response": {
+      "output": "{{body.data}}"
+    }
+  },
+  "mappableParameters": [
+    { "name": "url", "type": "url", "label": "Website URL", "required": true, "help": "The full URL to fetch, e.g. https://example.com/page." },
+    {
+      "name": "formats",
+      "type": "array",
+      "label": "Output formats",
+      "spec": {
+        "type": "select",
+        "options": [
+          { "label": "Markdown", "value": "markdown" },
+          { "label": "HTML", "value": "html" },
+          { "label": "Raw HTML", "value": "raw_html" },
+          { "label": "Links", "value": "links" },
+          { "label": "Metadata", "value": "metadata" }
+        ]
+      },
+      "default": ["markdown"]
+    },
+    { "name": "only_main_content", "type": "boolean", "label": "Main content only", "default": true, "help": "Strip navigation, footers, and boilerplate." },
+    {
+      "name": "render",
+      "type": "select",
+      "label": "Rendering",
+      "options": [
+        { "label": "Auto (recommended)", "value": "auto" },
+        { "label": "HTTP only", "value": "http" },
+        { "label": "Headless browser", "value": "browser" },
+        { "label": "Unblocker", "value": "unblocker" }
+      ],
+      "default": "auto"
+    },
+    { "name": "max_age", "type": "number", "label": "Max cache age (ms)", "help": "If above 0, return a cached copy newer than this many milliseconds to save credits." },
+    { "name": "wait_for", "type": "number", "label": "Wait for (ms)", "help": "Extra time to wait after load when using browser rendering." }
+  ],
+  "interface": [
+    { "name": "markdown", "type": "text", "label": "Markdown" },
+    { "name": "html", "type": "text", "label": "HTML" },
+    { "name": "links", "type": "array", "label": "Links", "spec": { "type": "url" } },
+    {
+      "name": "metadata",
+      "type": "collection",
+      "label": "Metadata",
+      "spec": [
+        { "name": "title", "type": "text" },
+        { "name": "description", "type": "text" },
+        { "name": "language", "type": "text" },
+        { "name": "status_code", "type": "number" },
+        { "name": "final_url", "type": "url" },
+        { "name": "content_type", "type": "text" }
+      ]
+    },
+    {
+      "name": "scrape",
+      "type": "collection",
+      "label": "Scrape",
+      "spec": [
+        { "name": "method", "type": "text" },
+        { "name": "escalated", "type": "boolean" }
+      ]
+    }
+  ],
+  "samples": {
+    "markdown": "# Example Domain\n\nThis domain is for use in illustrative examples...",
+    "links": ["https://www.iana.org/domains/example"],
+    "metadata": { "title": "Example Domain", "status_code": 200, "final_url": "https://example.com", "content_type": "text/html; charset=UTF-8" },
+    "scrape": { "method": "http", "escalated": false }
+  }
+}

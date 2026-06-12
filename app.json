@@ -1,0 +1,11 @@
+{
+  "name": "crawlora",
+  "label": "Crawlora",
+  "description": "Crawlora is a structured web-data API that returns clean JSON and page content from the public web.",
+  "language": "en",
+  "private": true,
+  "theme": "#0B5FFF",
+  "website": "https://crawlora.net",
+  "documentation": "https://docs.crawlora.net",
+  "audience": "global"
+}

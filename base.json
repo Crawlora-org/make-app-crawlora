@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://api.crawlora.net/api/v1",
+  "headers": {
+    "x-api-key": "{{connection.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{ifempty(body.msg, body.message, 'Request failed')}}"
+    }
+  },
+  "log": {
+    "sanitize": ["request.headers.x-api-key"]
+  }
+}
