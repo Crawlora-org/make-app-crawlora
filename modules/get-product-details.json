@@ -15,7 +15,7 @@
   },
   "mappableParameters": [
     { "name": "source", "type": "select", "label": "Source", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" }, { "label": "App Store", "value": "appstore" }, { "label": "Google Play", "value": "googleplay" } ] },
-    { "name": "identifier", "type": "text", "label": "Identifier", "required": true, "help": "Amazon: ASIN · eBay: item ID · App Store: numeric app ID · Google Play: package name." },
+    { "name": "identifier", "type": "text", "label": "Identifier", "required": true, "help": "Amazon: ASIN · eBay: item ID · App Store: bundle ID (e.g. com.company.app) · Google Play: package name." },
     { "name": "country", "type": "text", "label": "Country" }
   ],
   "interface": [],

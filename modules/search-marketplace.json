@@ -5,11 +5,10 @@
   "moduleType": "action",
   "connection": "crawlora",
   "communication": {
-    "url": "{{switch(parameters.source; \"etsy\"; \"/etsy/search\"; \"ebay\"; \"/ebay/search\"; \"/amazon/search\")}}",
+    "url": "{{switch(parameters.source; \"ebay\"; \"/ebay/search\"; \"/amazon/search\")}}",
     "method": "{{switch(parameters.source; \"ebay\"; \"POST\"; \"GET\")}}",
     "qs": {
       "k": "{{parameters.query}}",
-      "q": "{{parameters.query}}",
       "page": "{{parameters.page}}"
     },
     "body": {
@@ -19,7 +18,7 @@
     "response": { "output": "{{body.data}}" }
   },
   "mappableParameters": [
-    { "name": "source", "type": "select", "label": "Marketplace", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" }, { "label": "Etsy", "value": "etsy" } ] },
+    { "name": "source", "type": "select", "label": "Marketplace", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" } ] },
     { "name": "query", "type": "text", "label": "Search query", "required": true },
     { "name": "page", "type": "number", "label": "Page", "default": 1 }
   ],
