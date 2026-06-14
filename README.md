@@ -44,6 +44,8 @@ In **Make → Custom apps → Create a new app**, fill each section from these f
    into the matching builder tab: `communication` → **Communication**, `mappableParameters` →
    **Mappable parameters**, `interface` → **Interface**, `samples` → **Samples**. The `moduleType`
    field says whether to create an Action, Search, or Universal module.
+5. **Readme** — paste [`app-readme.md`](app-readme.md) into the **Readme** tab (the user-facing docs
+   shown on the app's page in Make).
 
 ## Links
 
