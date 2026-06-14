@@ -12,7 +12,7 @@
       "country": "{{parameters.country}}",
       "page": "{{parameters.page}}"
     },
-    "response": { "output": "{{body.data}}" }
+    "response": { "output": "{{body}}" }
   },
   "mappableParameters": [
     { "name": "source", "type": "select", "label": "Source", "required": true, "default": "trustpilot", "options": [ { "label": "Trustpilot", "value": "trustpilot" }, { "label": "App Store", "value": "appstore" }, { "label": "Google Play", "value": "googleplay" }, { "label": "Product Hunt", "value": "producthunt" }, { "label": "Airbnb", "value": "airbnb" } ] },
