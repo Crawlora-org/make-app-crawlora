@@ -15,7 +15,7 @@
       "keyword": "{{parameters.query}}",
       "page": "{{parameters.page}}"
     },
-    "response": { "output": "{{body.data}}" }
+    "response": { "output": "{{body}}" }
   },
   "mappableParameters": [
     { "name": "source", "type": "select", "label": "Marketplace", "required": true, "default": "amazon", "options": [ { "label": "Amazon", "value": "amazon" }, { "label": "eBay", "value": "ebay" } ] },

@@ -17,7 +17,7 @@
       "country": "{{parameters.country}}",
       "language": "{{parameters.language}}"
     },
-    "response": { "output": "{{body.data}}" }
+    "response": { "output": "{{body}}" }
   },
   "mappableParameters": [
     { "name": "query", "type": "text", "label": "Search query", "required": true },
