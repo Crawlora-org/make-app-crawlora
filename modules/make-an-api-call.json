@@ -1,7 +1,7 @@
 {
   "name": "makeAnApiCall",
-  "label": "Make an API Call",
-  "description": "Sends a custom API call to Crawlora. Use this to call endpoints that aren't covered by existing modules.",
+  "label": "Make an API call",
+  "description": "Performs an arbitrary authorized API call.",
   "moduleType": "universal",
   "connection": "crawlora",
   "communication": {
